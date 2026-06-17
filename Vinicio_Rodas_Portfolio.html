@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinicio Rodas — Remote Professional Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1B3A6B;
+    --navy-light: #2A4F8F;
+    --amber:  #C8922A;
+    --amber-light: #F0B84A;
+    --slate:  #334155;
+    --body:   #475569;
+    --muted:  #94A3B8;
+    --rule:   #E2E8F0;
+    --bg:     #F8F9FB;
+    --white:  #FFFFFF;
+    --card:   #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--slate);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(27, 58, 107, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-name { color: var(--white); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--amber-light); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #243E72 60%, #1a3060 100%);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(200,146,42,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(200,146,42,0.18);
+    border: 1px solid rgba(200,146,42,0.35);
+    color: var(--amber-light);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.72);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    justify-content: center; margin-bottom: 2.5rem;
+  }
+  .hero-tag {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.85rem;
+    border-radius: 2rem;
+  }
+  .hero-quote {
+    max-width: 680px; margin: 0 auto 2.5rem;
+    border-left: 3px solid var(--amber);
+    padding: 1.1rem 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 0 0.5rem 0.5rem 0;
+    text-align: left;
+  }
+  .hero-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.08rem;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.65;
+  }
+  .hero-contact {
+    display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem;
+    justify-content: center;
+    font-size: 0.82rem; color: rgba(255,255,255,0.6);
+  }
+  .hero-contact span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.4rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; color: var(--navy);
+    margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .section-rule {
+    width: 3rem; height: 3px; background: var(--amber);
+    margin-bottom: 2rem; border-radius: 2px;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--navy);
+    padding: 2rem;
+  }
+  .stats-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px; background: rgba(255,255,255,0.1);
+  }
+  .stat {
+    background: var(--navy);
+    padding: 1.5rem 1rem; text-align: center;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--amber-light); line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); font-weight: 500; line-height: 1.3; }
+
+  /* ── COMPETENCY GRID ── */
+  .competency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  .competency-chip {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--amber);
+    border-radius: 0.4rem;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--slate);
+    line-height: 1.3;
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 11px; top: 6px; bottom: 0;
+    width: 2px; background: var(--rule);
+  }
+  .tl-item { position: relative; padding-left: 2.5rem; margin-bottom: 2.5rem; }
+  .tl-dot {
+    position: absolute; left: 0; top: 5px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--white); border: 3px solid var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tl-dot-inner { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+  .tl-date { font-size: 0.72rem; font-weight: 600; color: var(--amber); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .tl-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.15rem; }
+  .tl-company { font-size: 0.85rem; color: var(--body); margin-bottom: 0.6rem; font-weight: 500; }
+  .tl-bullets { list-style: none; padding: 0; }
+  .tl-bullets li {
+    font-size: 0.85rem; color: var(--body); line-height: 1.6;
+    padding: 0.2rem 0 0.2rem 1rem; position: relative;
+  }
+  .tl-bullets li::before {
+    content: ''; position: absolute; left: 0; top: 0.65rem;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+  }
+
+  /* ── CASE STUDIES ── */
+  .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .case-card {
+    background: var(--white); border: 1px solid var(--rule);
+    border-radius: 0.75rem; padding: 1.5rem;
+    border-top: 4px solid var(--navy);
+  }
+  .case-tag {
+    display: inline-block; background: rgba(27,58,107,0.08);
+    color: var(--navy); font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 1rem; margin-bottom: 0.75rem;
+  }
+  .case-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; }
+  .case-body { font-size: 0.83rem; color: var(--body); line-height: 1.65; margin-bottom: 1rem; }
+  .case-result {
+    background: rgba(200,146,42,0.08); border: 1px solid rgba(200,146,42,0.25);
+    border-radius: 0.4rem; padding: 0.6rem 0.85rem;
+  }
+  .case-result-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); margin-bottom: 0.2rem; }
+  .case-result-text { font-size: 0.82rem; font-weight: 600; color: var(--slate); }
+
+  /* ── SAMPLE WORK ── */
+  .sample-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .sample-card {
+    background: var(--white); border: 1px solid var(--rule);
+    border-radius: 0.75rem; padding: 1.5rem;
+  }
+  .sample-icon {
+    width: 40px; height: 40px; border-radius: 0.5rem;
+    background: var(--navy); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; font-size: 1.1rem;
+  }
+  .sample-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+  .sample-body { font-size: 0.82rem; color: var(--body); line-height: 1.6; }
+
+  /* ── ARTIFACT ── */
+  .artifact {
+    background: var(--white); border: 1px solid var(--rule);
+    border-radius: 0.75rem; overflow: hidden; margin-bottom: 1.5rem;
+  }
+  .artifact-header {
+    background: var(--navy); padding: 0.75rem 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .artifact-header-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .artifact-title { color: rgba(255,255,255,0.85); font-size: 0.8rem; font-weight: 500; }
+  .artifact-body { padding: 1.25rem 1.5rem; }
+  .artifact-body h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .artifact-body p, .artifact-body li { font-size: 0.83rem; color: var(--body); line-height: 1.65; }
+  .artifact-body ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+  .artifact-body li { margin-bottom: 0.3rem; }
+  .artifact-body .step {
+    display: flex; gap: 0.75rem; margin-bottom: 0.75rem; align-items: flex-start;
+  }
+  .step-num {
+    min-width: 24px; height: 24px; border-radius: 50%;
+    background: var(--navy); color: white;
+    font-size: 0.7rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 0.1rem;
+  }
+  .step-text { font-size: 0.83rem; color: var(--body); line-height: 1.6; }
+  .script-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.15rem; }
+  .script-line {
+    background: rgba(27,58,107,0.04); border-left: 3px solid var(--navy);
+    padding: 0.5rem 0.75rem; margin-bottom: 0.5rem;
+    border-radius: 0 0.3rem 0.3rem 0;
+    font-size: 0.82rem; color: var(--slate); line-height: 1.55;
+  }
+  .script-line.amber { border-left-color: var(--amber); }
+
+  /* ── TOOLS ── */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+  .tool-chip {
+    background: var(--white); border: 1px solid var(--rule);
+    border-radius: 0.5rem; padding: 0.65rem 0.85rem;
+    font-size: 0.8rem; font-weight: 500; color: var(--slate); text-align: center;
+  }
+  .tool-cat { font-size: 0.65rem; color: var(--muted); margin-top: 0.15rem; }
+
+  /* ── LANGUAGES ── */
+  .lang-row { display: flex; flex-direction: column; gap: 1rem; max-width: 480px; }
+  .lang-item { display: flex; align-items: center; gap: 1rem; }
+  .lang-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); min-width: 80px; }
+  .lang-bar-wrap { flex: 1; background: var(--rule); border-radius: 4px; height: 8px; overflow: hidden; }
+  .lang-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--navy), var(--navy-light)); }
+  .lang-level { font-size: 0.75rem; color: var(--muted); font-weight: 500; min-width: 80px; text-align: right; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.6);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; margin-top: 2rem;
+  }
+  footer strong { color: rgba(255,255,255,0.9); }
+
+  /* ── DIVIDER ── */
+  .page-divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .section { padding: 3rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Vinicio Rodas</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#competencies">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#samples">Work Samples</a></li>
+    <li><a href="#tools">Tools</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Open to Remote Roles Globally</div>
+  <h1>Vinicio Rodas</h1>
+  <p class="hero-subtitle">Guatemala City &nbsp;·&nbsp; Bilingual EN / ES (C1/C2) &nbsp;·&nbsp; 10+ Years Remote Experience</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Customer Service</span>
+    <span class="hero-tag">Client Success</span>
+    <span class="hero-tag">Debt Resolution Programs</span>
+    <span class="hero-tag">Technical Support</span>
+    <span class="hero-tag">Billing &amp; Retention</span>
+    <span class="hero-tag">Healthcare Support</span>
+  </div>
+  <div class="hero-quote">
+    <p>"I bring the same approach every time: listen carefully, understand the real concern behind the words, and respond with clarity, patience, and a concrete path forward — in English and in Spanish."</p>
+  </div>
+  <div class="hero-contact">
+    <span>v85rodas@outlook.com</span>
+    <span>+502 4061-4676</span>
+    <span>linkedin.com/in/vinicio-rodas</span>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Years Remote Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">75%</div>
+      <div class="stat-label">Client Reactivation Rate (ICON Solutions)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">85%+</div>
+      <div class="stat-label">CSAT Score Maintained (Technical Support)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Industries Supported</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">C1/C2</div>
+      <div class="stat-label">English Proficiency (TrueNorth 9.2)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">Profile</div>
+  <h2 class="section-title">About Me</h2>
+  <div class="section-rule"></div>
+  <p style="font-size:0.95rem; color:var(--body); line-height:1.8; margin-bottom:1rem;">
+    I am a bilingual customer service and client success professional with over 10 years of remote work experience. Throughout my career I have supported customers and clients across SaaS and technology, healthcare and insurance, financial services, and travel and hospitality — and that cross-industry exposure has made me someone who adapts quickly, learns fast, and performs consistently regardless of the product or the complexity of the situation.
+  </p>
+  <p style="font-size:0.95rem; color:var(--body); line-height:1.8; margin-bottom:1rem;">
+    My core strength is communication. Whether I am walking a frustrated customer through a billing dispute, guiding a Medicare patient through prescription coverage options, or helping a client stay on track with a long-term financial program, I bring the same approach every time: listen carefully, understand the real concern behind the words, and respond with clarity, patience, and a concrete path forward. In English and in Spanish, I communicate in a way that makes people feel heard and respected.
+  </p>
+  <p style="font-size:0.95rem; color:var(--body); line-height:1.8;">
+    I have worked remotely for the entirety of my career. I understand what it means to be trusted with a customer relationship or a client account without someone looking over your shoulder, and I take that trust seriously. I show up prepared, communicate proactively, flag problems before they become escalations, and treat every customer interaction as a reflection of the company I represent.
+  </p>
+</section>
+
+<hr class="page-divider">
+
+<!-- COMPETENCIES -->
+<section class="section" id="competencies">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title">Core Competencies</h2>
+  <div class="section-rule"></div>
+  <div class="competency-grid">
+    <div class="competency-chip">Customer Service & Retention</div>
+    <div class="competency-chip">Client Success Management</div>
+    <div class="competency-chip">Debt Resolution Program Support</div>
+    <div class="competency-chip">Technical Troubleshooting</div>
+    <div class="competency-chip">Escalation Handling & De-escalation</div>
+    <div class="competency-chip">Account Management</div>
+    <div class="competency-chip">SaaS Product Support</div>
+    <div class="competency-chip">Healthcare & Benefits Navigation</div>
+    <div class="competency-chip">Onboarding & Client Education</div>
+    <div class="competency-chip">CRM Administration</div>
+    <div class="competency-chip">Multi-Channel Support</div>
+    <div class="competency-chip">HIPAA Compliance</div>
+    <div class="competency-chip">Billing Disputes & Adjustments</div>
+    <div class="competency-chip">Invoice Processing</div>
+    <div class="competency-chip">Conflict Resolution</div>
+    <div class="competency-chip">Remote Team Collaboration</div>
+  </div>
+</section>
+
+<hr class="page-divider">
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-label">Career History</div>
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="section-rule"></div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-date">Jan 2024 – Mar 2026</div>
+      <div class="tl-title">Billing &amp; Retentions Specialist</div>
+      <div class="tl-company">GOTO Technologies, S.A. — Remote, Guatemala City</div>
+      <ul class="tl-bullets">
+        <li>Managed end-to-end billing support for a SaaS product portfolio: invoices, adjustments, refunds, and disputed charges at high volume.</li>
+        <li>Applied retention strategies — tailored offers, account reviews, escalation handling — to prevent involuntary churn and consistently meet monthly KPIs.</li>
+        <li>Explained complex VoIP and cloud products to non-technical customers, reducing repeat contacts and improving first-contact resolution.</li>
+        <li>Maintained audit-ready CRM records of all billing transactions and retention interactions.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-date">Jan 2023 – Jan 2024</div>
+      <div class="tl-title">Client Success Account Manager</div>
+      <div class="tl-company">ICON Solutions, S.A. — Remote, Guatemala City</div>
+      <ul class="tl-bullets">
+        <li>Managed a portfolio of clients enrolled in a structured debt resolution program as their dedicated account manager.</li>
+        <li>Achieved a <strong>75% client reactivation rate</strong> by reaching out to disengaged clients, identifying barriers, and rebuilding trust.</li>
+        <li>Conducted monthly account reviews and progress check-ins aligned to client milestones and payment schedules.</li>
+        <li>Led new client onboarding with personalized guidance, reducing early drop-off and accelerating time-to-value.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-date">Sep 2022 – May 2023</div>
+      <div class="tl-title">Healthcare Customer Care Specialist</div>
+      <div class="tl-company">Everise, S.A. — Humana Account — Remote, Guatemala City</div>
+      <ul class="tl-bullets">
+        <li>Served as primary contact for Medicare patients and providers on insurance coverage, benefits, and prescription fulfillment.</li>
+        <li>Applied medical terminology and knowledge of drug schedules, refill workflows, and prior authorization processes daily.</li>
+        <li>Maintained strict HIPAA compliance across all interactions.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-date">May 2020 – Sep 2022</div>
+      <div class="tl-title">Customer Service &amp; Resolutions Specialist</div>
+      <div class="tl-company">Conduent — Royal Caribbean Account — Remote, Guatemala City</div>
+      <ul class="tl-bullets">
+        <li>Provided high-volume remote support for reservations, billing, payment processing, and itinerary changes.</li>
+        <li>Specialized in resolving escalated billing disputes, consistently turning frustrated customers into loyal guests.</li>
+        <li>Processed credits, billing adjustments, and goodwill accommodations within company policy.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+      <div class="tl-date">Jan 2018 – Mar 2020</div>
+      <div class="tl-title">Technical Support Specialist</div>
+      <div class="tl-company">World Connection — Quicken Account — Remote, Guatemala City</div>
+      <ul class="tl-bullets">
+        <li>Delivered remote technical support for personal finance software on Windows and macOS, maintaining CSAT above 85%.</li>
+        <li>Diagnosed software errors, connectivity issues, and data sync problems for non-technical users with step-by-step precision.</li>
+        <li>Collaborated with Tier-2 teams to route complex cases and ensure complete follow-through.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="page-divider">
+
+<!-- CASE STUDIES -->
+<section class="section" id="cases">
+  <div class="section-label">Results</div>
+  <h2 class="section-title">Case Studies</h2>
+  <div class="section-rule"></div>
+  <div class="case-grid">
+
+    <div class="case-card">
+      <span class="case-tag">Client Success</span>
+      <div class="case-title">Rebuilding a 75% Client Reactivation Rate for a Debt Resolution Program</div>
+      <p class="case-body">At ICON Solutions, a significant portion of the enrolled client portfolio had become disengaged — missing check-ins, not responding to communications, or requesting cancellations. I developed a structured outreach approach: identifying root causes of disengagement, acknowledging client frustration without defensiveness, and presenting a realistic reengagement path. I made no promises that couldn't be kept, and I focused every conversation on the client's original goal rather than the program itself.</p>
+      <div class="case-result">
+        <div class="case-result-label">Outcome</div>
+        <div class="case-result-text">75% of disengaged clients reactivated and returned to active program participation.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-tag">Billing & Retention</span>
+      <div class="case-title">Reducing Involuntary Churn Through Proactive Billing Retention at a SaaS Company</div>
+      <p class="case-body">At GOTO Technologies, many cancellations were triggered not by genuine product dissatisfaction, but by billing friction — unexpected charges, unclear invoices, or frustration with the renewal process. I developed a pattern of proactive outreach to at-risk accounts before cancellation requests escalated, addressing billing concerns early, explaining charges in plain terms, and offering account reviews that demonstrated value before the customer reached a breaking point.</p>
+      <div class="case-result">
+        <div class="case-result-label">Outcome</div>
+        <div class="case-result-text">Consistent monthly retention KPI achievement with measurable reduction in involuntary churn.</div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-tag">Escalation Handling</span>
+      <div class="case-title">De-escalating High-Emotion Billing Disputes in Travel & Hospitality</div>
+      <p class="case-body">Royal Caribbean customers often reached support in a heightened emotional state — vacation plans disrupted, unexpected charges on statements, itinerary changes outside their control. Through active listening, clear empathetic language, and a structured approach to validating concerns before moving to resolution, I was able to consistently de-escalate tense interactions and reach outcomes that satisfied the customer while remaining within company policy.</p>
+      <div class="case-result">
+        <div class="case-result-label">Outcome</div>
+        <div class="case-result-text">High satisfaction scores maintained across a complex, high-emotion support environment.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="page-divider">
+
+<!-- WORK SAMPLES -->
+<section class="section" id="samples">
+  <div class="section-label">Work Samples</div>
+  <h2 class="section-title">Professional Artifacts</h2>
+  <div class="section-rule"></div>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1.75rem;">The following are representative samples of the type of work I produce and the frameworks I apply in my day-to-day professional practice. All client and company-specific data has been anonymized.</p>
+
+  <!-- Sample 1: Escalation Framework -->
+  <div class="artifact">
+    <div class="artifact-header">
+      <div class="artifact-header-dot" style="background:#EF4444;"></div>
+      <div class="artifact-header-dot" style="background:#F59E0B;"></div>
+      <div class="artifact-header-dot" style="background:#10B981;"></div>
+      <span class="artifact-title">Escalation Handling Framework — Billing Disputes</span>
+    </div>
+    <div class="artifact-body">
+      <h4>How I approach an escalated billing complaint</h4>
+      <p style="margin-bottom:1rem;">When a customer contacts support in an escalated state over a billing issue, the instinct to jump to resolution often makes things worse. The following is the framework I follow:</p>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Acknowledge first, solve second.</strong> Before touching the account, I name what the customer is feeling: "I completely understand why this is frustrating, and I want to make sure we get this sorted out for you today." This lowers the emotional temperature before any problem-solving begins.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Clarify the specific concern.</strong> Escalated customers often lead with emotion rather than facts. I ask one focused question to identify the exact charge or issue: "Can you tell me which transaction you're seeing on your statement?" This shifts the conversation from emotional to factual.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Review and explain transparently.</strong> I pull up the account and walk through the charge in plain language — what it is, when it occurred, and why. No jargon. If the charge is correct, I explain it clearly. If there is an error, I acknowledge it without hedging.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Offer a concrete resolution path.</strong> Every interaction ends with a clear next step — an adjustment processed, a supervisor callback scheduled, a timeline for review. The customer leaves knowing exactly what happens next.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>Document completely.</strong> Every detail of the interaction, the concern raised, the resolution offered, and the outcome is recorded in the CRM immediately. This protects the customer, the company, and the integrity of the account history.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sample 2: Retention Script -->
+  <div class="artifact">
+    <div class="artifact-header">
+      <div class="artifact-header-dot" style="background:#EF4444;"></div>
+      <div class="artifact-header-dot" style="background:#F59E0B;"></div>
+      <div class="artifact-header-dot" style="background:#10B981;"></div>
+      <span class="artifact-title">Retention Conversation Guide — Cancellation Request (SaaS)</span>
+    </div>
+    <div class="artifact-body">
+      <h4>How I handle an inbound cancellation request</h4>
+      <p style="margin-bottom:1rem;">A cancellation request is not a closed door — it is a conversation that has not happened yet. The following is how I structure that conversation:</p>
+      <div class="script-label">Opening — do not confirm the cancellation immediately</div>
+      <div class="script-line">"I can absolutely help you with that. Before I process anything, do you mind if I ask what's driving the decision today? I want to make sure there isn't something we can address first."</div>
+      <div class="script-label">After the customer explains their reason</div>
+      <div class="script-line amber">"Thank you for being straight with me about that — that's genuinely helpful. Let me take a look at your account and see if there's something I can do here."</div>
+      <div class="script-label">If the issue is billing-related</div>
+      <div class="script-line">"I can see [specific charge / plan detail]. What I can do is [adjustment / review / alternative plan] — would that change things for you, or is there something else going on?"</div>
+      <div class="script-label">If the customer insists on cancelling</div>
+      <div class="script-line amber">"I completely respect that. I'll take care of this for you right now. I do want you to know that [relevant option — pause, downgrade, return window] is available if your situation changes. I'll make a note on the account."</div>
+      <p style="font-size:0.78rem; color:var(--muted); margin-top:0.75rem;">Note: The goal is never to prevent a cancellation by force — it is to ensure the customer has made an informed decision and feels respected regardless of the outcome. Goodwill built in a cancellation call often drives return customers.</p>
+    </div>
+  </div>
+
+  <!-- Sample 3: Onboarding Checklist -->
+  <div class="artifact">
+    <div class="artifact-header">
+      <div class="artifact-header-dot" style="background:#EF4444;"></div>
+      <div class="artifact-header-dot" style="background:#F59E0B;"></div>
+      <div class="artifact-header-dot" style="background:#10B981;"></div>
+      <span class="artifact-title">New Client Onboarding Checklist — Debt Resolution Program</span>
+    </div>
+    <div class="artifact-body">
+      <h4>What I cover in the first 30 days with a new client</h4>
+      <ul>
+        <li><strong>Day 1 — Welcome call:</strong> Confirm enrollment details, introduce myself as their dedicated account manager, set expectations for communication frequency and channel.</li>
+        <li><strong>Day 1 — Program orientation:</strong> Walk through program phases, timeline, and what success looks like at each milestone. Address questions without rushing.</li>
+        <li><strong>Day 3 — Documentation review:</strong> Confirm all required documents are received and correct. Flag any gaps immediately rather than waiting.</li>
+        <li><strong>Day 7 — First check-in:</strong> Proactive outreach to confirm the client feels comfortable, answer any questions that emerged after the initial call, and reaffirm the plan.</li>
+        <li><strong>Day 14 — First milestone review:</strong> Review first payment schedule adherence, address any early friction, adjust communication preferences if needed.</li>
+        <li><strong>Day 30 — 30-day touchpoint:</strong> Full account review, progress summary, and forward planning for the next 60 days. Identify any risk signals early.</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<hr class="page-divider">
+
+<!-- TOOLS -->
+<section class="section" id="tools">
+  <div class="section-label">Technology</div>
+  <h2 class="section-title">Tools &amp; Platforms</h2>
+  <div class="section-rule"></div>
+  <div class="tools-grid">
+    <div class="tool-chip">Salesforce<div class="tool-cat">CRM</div></div>
+    <div class="tool-chip">HubSpot<div class="tool-cat">CRM</div></div>
+    <div class="tool-chip">Zendesk<div class="tool-cat">Ticketing</div></div>
+    <div class="tool-chip">Freshdesk<div class="tool-cat">Ticketing</div></div>
+    <div class="tool-chip">Intercom<div class="tool-cat">Ticketing</div></div>
+    <div class="tool-chip">RingCentral<div class="tool-cat">Contact Center</div></div>
+    <div class="tool-chip">Genesys Cloud<div class="tool-cat">Contact Center</div></div>
+    <div class="tool-chip">Avaya One-X<div class="tool-cat">Contact Center</div></div>
+    <div class="tool-chip">Microsoft 365<div class="tool-cat">Productivity</div></div>
+    <div class="tool-chip">Google Workspace<div class="tool-cat">Productivity</div></div>
+    <div class="tool-chip">Slack<div class="tool-cat">Communication</div></div>
+    <div class="tool-chip">GoTo Suite<div class="tool-cat">SaaS / VoIP</div></div>
+  </div>
+
+  <div style="margin-top:2.5rem;">
+    <div class="section-label" style="margin-bottom:0.75rem;">Languages</div>
+    <div class="lang-row">
+      <div class="lang-item">
+        <span class="lang-name">English</span>
+        <div class="lang-bar-wrap"><div class="lang-bar" style="width:95%;"></div></div>
+        <span class="lang-level">C1/C2 · Score 9.2</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Spanish</span>
+        <div class="lang-bar-wrap"><div class="lang-bar" style="width:100%;"></div></div>
+        <span class="lang-level">Native</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;">
+    <div class="section-label" style="margin-bottom:0.75rem;">Certifications</div>
+    <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+      <div class="competency-chip">Lean Six Sigma Yellow Belt</div>
+      <div class="competency-chip">TrueNorth English Assessment C1/C2</div>
+      <div class="competency-chip">HIPAA Compliance (Practical)</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Vinicio Rodas</strong> &nbsp;·&nbsp; Guatemala City, GT &nbsp;·&nbsp; v85rodas@outlook.com &nbsp;·&nbsp; +502 4061-4676<br>
+  <span style="margin-top:0.4rem; display:block;">Available immediately &nbsp;·&nbsp; Remote only &nbsp;·&nbsp; CT / ET / PT coverage available</span>
+</footer>
+
+</body>
+</html>
